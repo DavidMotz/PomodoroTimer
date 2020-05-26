@@ -44,13 +44,34 @@ body{
   }
   
   .timerframe{
-    height: 20rem;
-    width: 20rem;
+    height: 25rem;
+    width: 25rem;
     border-radius: 60%;
     background-color: rgba(255,255,255, .4);
     margin: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ul{
+    transform: translateX(-7%);
   }
   
+  li{
+    display: inline-block;
+    font-size: 1.2em;
+    list-style-type: none;
+    text-transform: uppercase;
+  }
+
+  li span{
+    display: block;
+    font-size: 3em;
+    text-align: center;
+  }
+
   .btn{
     display: flex;
     justify-content: center;
