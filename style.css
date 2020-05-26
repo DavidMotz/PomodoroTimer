@@ -55,21 +55,12 @@ body{
     justify-content: center;
   }
 
-  ul{
-    transform: translateX(-7%);
-  }
-  
-  li{
-    display: inline-block;
-    font-size: 1.2em;
-    list-style-type: none;
-    text-transform: uppercase;
+  #time{
+    font-size: 5rem;
   }
 
-  li span{
-    display: block;
-    font-size: 3em;
-    text-align: center;
+  .btn-container{
+    display: flex;
   }
 
   .btn{
@@ -82,6 +73,7 @@ body{
     padding: 5px;
     border: 2px solid #fff;
   }
+
   
   .btn:hover{
     cursor: pointer;
