@@ -1,14 +1,15 @@
+let timerRunning = false;
+let interval
 function startTimer(duration, display) {
     var start = Date.now(),
         diff,
         minutes,
         seconds;
     function timer() {
-        // get the number of seconds that have elapsed since 
-        // startTimer() was called
+
         diff = duration - (((Date.now() - start) / 1000) | 0);
 
-        // does the same job as parseInt truncates the float
+
         minutes = (diff / 60) | 0;
         seconds = (diff % 60) | 0;
 
@@ -18,24 +19,31 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds; 
 
         if (diff <= 0) {
-            // add one second so that the count down starts at the full duration
-            // example 05:00 not 04:59
-            start = Date.now() + 1000;
+            timerRunning = false;
         }
     };
-    // we don't want to wait a full second before the timer starts
+
     timer();
-    setInterval(timer, 1000);
+        interval = setInterval(() => {
+        timer();
+        if(timerRunning == false){
+            clearInterval(interval);
+        }
+    }, 1000);
 }
 
 document.getElementById("start25").onclick = function(){
-    var fiveMinutes = 60 * 25,
+    var fiveMinutes =  60 * 25,
         display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+        timerRunning = true;
+        clearInterval(interval);
+        startTimer(fiveMinutes, display);
 }
 
 document.getElementById("start5").onclick = function(){
     var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+        timerRunning = true;
+        clearInterval(interval);
+        startTimer(fiveMinutes, display);
 }
