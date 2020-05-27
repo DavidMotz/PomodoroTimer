@@ -1,10 +1,11 @@
+let timerRunning = false;
+let interval
 function startTimer(duration, display) {
     var start = Date.now(),
         diff,
         minutes,
         seconds;
     function timer() {
-
 
         diff = duration - (((Date.now() - start) / 1000) | 0);
 
@@ -18,22 +19,31 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds; 
 
         if (diff <= 0) {
-            start = Date.now() + 1000;
+            timerRunning = false;
         }
     };
 
     timer();
-    setInterval(timer, 1000);
+        interval = setInterval(() => {
+        timer();
+        if(timerRunning == false){
+            clearInterval(interval);
+        }
+    }, 1000);
 }
 
 document.getElementById("start25").onclick = function(){
-    var fiveMinutes = 60 * 25,
+    var fiveMinutes =  60 * 25,
         display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+        timerRunning = true;
+        clearInterval(interval);
+        startTimer(fiveMinutes, display);
 }
 
 document.getElementById("start5").onclick = function(){
     var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+        timerRunning = true;
+        clearInterval(interval);
+        startTimer(fiveMinutes, display);
 }
